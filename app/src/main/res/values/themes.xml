@@ -3,7 +3,8 @@
     <style name="Base.Theme.JMC" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/kantumruyPro_Regular</item>
     </style>
 
-    <style name="Theme.JMC" parent="Base.Theme.JMC" />
+    <style name="Theme.JMC" parent="Base.Theme.JMC"/>
 </resources>
