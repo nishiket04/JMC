@@ -22,63 +22,185 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginLeft="15dp"
-            android:textAlignment="center"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="341dp"
             android:layout_marginBottom="9dp"
-            android:textSize="27dp"/>
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:fontFamily="@font/kantumruypro_medium"
+            android:textColor="@color/white"
+            android:textSize="27dp" />
     </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        android:layout_margin="8dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Welcome Back!"
+            android:text="Welcome Back !!"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:fontFamily="@font/kantumruypro_bold"
             android:textAlignment="center"
-            android:textSize="20dp"/>
+            android:textSize="32dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login Here"
+            android:textStyle="bold"
+            android:fontFamily="@font/kantumruypro_bold"
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="#FFFFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeColor="@color/black">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
-            android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UserName"
-            android:layout_gravity="left"/>
-            <EditText
+            android:padding="15dp">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Enter username"
-                android:inputType="text"/>
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
-                android:layout_gravity="left"/>
-            <EditText
+                app:cardCornerRadius="10dp"
+                android:elevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:padding="8dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile"
+                        android:background="@color/primary"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Name"
+                        android:padding="5dp"
+                        android:background="@drawable/textbox_design"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Password"
-                android:inputType="textPassword"/>
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="20dp"
+                android:elevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:padding="8dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/mail"
+                        android:background="@color/primary"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Addhara card No."
+                        android:padding="5dp"
+                        android:background="@drawable/textbox_design"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                android:elevation="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:padding="8dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/phone"
+                        android:background="@color/primary"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Password"
+                        android:padding="5dp"
+                        android:background="@drawable/textbox_design"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LogIn"/>
+                android:background="@drawable/button_design"
+                android:text="LogIn"
+                android:textSize="18dp"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/white" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dnt_acc_txt"
+                    android:text="Don’t Have an account?"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/dnt_acc_txt"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/primary"
+                    android:text="Register"/>
+            </RelativeLayout>
+
+
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
