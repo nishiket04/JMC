@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fontFamily">@font/kantumruypro_regular</item>
+        <item name="colorPrimary">#D92678FF</item>
     </style>
 
     <style name="Theme.JMC" parent="Base.Theme.JMC"/>
