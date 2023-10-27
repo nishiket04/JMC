@@ -145,7 +145,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Addhara card No."
+                        android:hint="E-mail Id"
                         android:inputType="number"
                         android:id="@+id/login_Addhar"
                         android:padding="5dp"

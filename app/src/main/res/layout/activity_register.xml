@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+
+        <!-- JMC head-->
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/primary"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="9dp"
+                android:fontFamily="@font/kantumruypro_medium"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="27dp" />
+        </RelativeLayout>
+
+
+        <!--    welcome and login txt-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register Yourself"
+                android:textStyle="bold"
+                android:fontFamily="@font/kantumruypro_bold"
+                android:textAlignment="center"
+                android:textSize="32dp" />
+
+
+        </LinearLayout>
+
+
+        <!--    login card-box-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="#FFFFFFFF"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/black">
+
+            <!--        made a linealayout to set all thing vertical-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <!--            enter name box and image-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/profile" />
+
+                        <EditText
+                            android:id="@+id/login_Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="Name"
+                            android:inputType="text"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--            enter addhar box and image-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/mail" />
+
+                        <EditText
+                            android:id="@+id/login_Addhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="E-mail Id"
+                            android:inputType="number"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/mail" />
+
+                        <EditText
+                            android:id="@+id/login_Addhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="E-mail Id"
+                            android:inputType="number"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/mail" />
+
+                        <EditText
+                            android:id="@+id/login_Addhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="E-mail Id"
+                            android:inputType="number"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/mail" />
+
+                        <EditText
+                            android:id="@+id/login_Addhar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="E-mail Id"
+                            android:inputType="number"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--            enter password and image-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/phone" />
+
+                        <EditText
+                            android:id="@+id/login_Pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--            login button-->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/login_Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/button_design"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="2dp"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <!--    dont have an account teext in relative to add color for other txt and do onclick-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:id="@+id/dnt_acc_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Already Have an account?" />
+
+                    <TextView
+                        android:id="@+id/login_Register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toEndOf="@id/dnt_acc_txt"
+                        android:text="LogIn"
+                        android:textColor="@color/primary" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
