@@ -33,7 +33,6 @@
                 android:textSize="27dp" />
         </RelativeLayout>
 
-
         <!--    welcome and login txt-->
         <LinearLayout
             android:layout_width="wrap_content"
@@ -103,7 +102,7 @@
                             android:src="@drawable/profile" />
 
                         <EditText
-                            android:id="@+id/login_Name"
+                            android:id="@+id/reg_Name"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/textbox_design"
@@ -134,11 +133,40 @@
                             android:src="@drawable/mail" />
 
                         <EditText
-                            android:id="@+id/login_Addhar"
+                            android:id="@+id/reg_Mail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/textbox_design"
                             android:hint="E-mail Id"
+                            android:inputType="text"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/primary"
+                            android:padding="8dp"
+                            android:src="@drawable/phone" />
+
+                        <EditText
+                            android:id="@+id/reg_Mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textbox_design"
+                            android:hint="Mobile No."
                             android:inputType="number"
                             android:padding="5dp" />
                     </LinearLayout>
@@ -160,14 +188,14 @@
                             android:layout_height="match_parent"
                             android:background="@color/primary"
                             android:padding="8dp"
-                            android:src="@drawable/mail" />
+                            android:src="@drawable/addhar_icon" />
 
                         <EditText
-                            android:id="@+id/login_Addhar"
+                            android:id="@+id/reg_Addhar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/textbox_design"
-                            android:hint="E-mail Id"
+                            android:hint="AddharCard No."
                             android:inputType="number"
                             android:padding="5dp" />
                     </LinearLayout>
@@ -189,44 +217,15 @@
                             android:layout_height="match_parent"
                             android:background="@color/primary"
                             android:padding="8dp"
-                            android:src="@drawable/mail" />
+                            android:src="@drawable/pass_icon" />
 
                         <EditText
-                            android:id="@+id/login_Addhar"
+                            android:id="@+id/reg_Pass"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/textbox_design"
-                            android:hint="E-mail Id"
-                            android:inputType="number"
-                            android:padding="5dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="0dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/primary"
-                            android:padding="8dp"
-                            android:src="@drawable/mail" />
-
-                        <EditText
-                            android:id="@+id/login_Addhar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/textbox_design"
-                            android:hint="E-mail Id"
-                            android:inputType="number"
+                            android:hint="Password"
+                            android:inputType="textPassword"
                             android:padding="5dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -249,14 +248,14 @@
                             android:layout_height="match_parent"
                             android:background="@color/primary"
                             android:padding="8dp"
-                            android:src="@drawable/phone" />
+                            android:src="@drawable/con_pass_icon" />
 
                         <EditText
-                            android:id="@+id/login_Pass"
+                            android:id="@+id/reg_Con_Pass"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/textbox_design"
-                            android:hint="Password"
+                            android:hint="Confirm Password"
                             android:inputType="textPassword"
                             android:padding="5dp" />
                     </LinearLayout>
@@ -264,7 +263,7 @@
 
                 <!--            login button-->
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/login_Btn"
+                    android:id="@+id/reg_Btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -298,7 +297,6 @@
                         android:text="LogIn"
                         android:textColor="@color/primary" />
                 </RelativeLayout>
-
 
             </LinearLayout>
 

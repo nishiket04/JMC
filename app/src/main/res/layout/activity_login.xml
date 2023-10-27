@@ -146,8 +146,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="E-mail Id"
-                        android:inputType="number"
-                        android:id="@+id/login_Addhar"
+                        android:inputType="text"
+                        android:id="@+id/login_Mail"
                         android:padding="5dp"
                         android:background="@drawable/textbox_design"/>
                 </LinearLayout>
@@ -168,7 +168,7 @@
                         android:layout_width="45dp"
                         android:padding="8dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/phone"
+                        android:src="@drawable/pass_icon"
                         android:background="@color/primary"
                         />
 
