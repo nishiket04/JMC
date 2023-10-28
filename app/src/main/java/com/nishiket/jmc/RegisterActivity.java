@@ -50,12 +50,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String addhar=reg_Addhar.getText().toString();
                 if(!email.isEmpty() && !pass.isEmpty() && !conPass.isEmpty() && !name.isEmpty() && !mobile.isEmpty() && !addhar.isEmpty()) {
                     if (pass.equals(conPass)) {
-                        viewModel.signUp(email, pass);
-                        Toast.makeText(RegisterActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                        viewModel.signUp(email, pass,name,addhar,mobile);
                         viewModel.getFirebaseUserMutableLiveData().observe(RegisterActivity.this, new Observer<FirebaseUser>() {
                             @Override
                             public void onChanged(FirebaseUser firebaseUser) {
                                 if (firebaseUser != null) {
+                                    Toast.makeText(RegisterActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
                                     startActivity(toHome);
                                     finish();
                                 }

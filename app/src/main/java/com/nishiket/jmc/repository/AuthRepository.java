@@ -16,6 +16,11 @@ public class AuthRepository {
     private Application application;
     private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
     private FirebaseAuth firebaseAuth;
+    private boolean flag;
+
+    public boolean getFlag() {
+        return flag;
+    }
 
     public AuthRepository(Application application){
         this.application=application;
@@ -37,8 +42,10 @@ public class AuthRepository {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            flag=false;
                             firebaseUserMutableLiveData.postValue(firebaseAuth.getCurrentUser());
                         }else {
+                            flag=true;
                             Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
