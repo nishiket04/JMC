@@ -55,6 +55,7 @@ public class login extends AppCompatActivity {
                         public void onChanged(FirebaseUser firebaseUser) {
                             if(firebaseUser != null){
                                 startActivity(toHome);
+                                finish();
                             }
                         }
                     });
