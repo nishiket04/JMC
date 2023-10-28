@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -21,16 +22,26 @@ public class UserDataRepository {
     private Application application;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference refrence= db.collection("userData");
+    private String name,email,mobile,addhar;
 
     public UserDataRepository(Application application){
         this.application=application;
     }
 
-    public void getUserData(){
-        refrence.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void getUserData(String email){
+        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Document data is in document.getData()
+                        Object data = document.getData();
+                        Log.d("FirestoreData", "Document data: " + data);
+                    } else {
+                        Log.d("FirestoreData", "No such document");
+                    }
+                }
             }
         });
     }
