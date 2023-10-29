@@ -1,6 +1,6 @@
  Jamnagar Municipal Corporation Complaint Reporting App
 
-![App Logo](app_logo.png)
+![App Logo](app/src/main/res/mipmap-hdpi/ic_launcher.webp)
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -37,4 +37,4 @@ To get started with the Jamnagar Municipal Corporation Complaint Reporting App, 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/jamnagar-complaint-app.git
+   git clone https://github.com/nishiket04/JMC.git
