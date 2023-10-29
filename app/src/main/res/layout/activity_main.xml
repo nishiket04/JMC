@@ -55,17 +55,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:elevation="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt"
+        app:tabIndicator="@drawable/tablayout_design"
+        app:tabIndicatorAnimationMode="elastic"
+        android:background="@drawable/tablayout_inactive_design"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorGravity="stretch"
         app:tabInlineLabel="true"
-        app:tabRippleColor="@null"
-        app:layout_constraintTop_toBottomOf="@+id/txt" />
+        app:tabIndicatorAnimationDuration="1500"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/primary" />
 
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="@id/bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
