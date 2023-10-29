@@ -12,10 +12,10 @@ import com.nishiket.jmc.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ClosedFragment#newInstance} factory method to
+ * Use the {@link DelayedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClosedFragment extends Fragment {
+public class DelayedFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class ClosedFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ClosedFragment() {
+    public DelayedFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class ClosedFragment extends Fragment {
      * @return A new instance of fragment ClosedFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ClosedFragment newInstance(String param1, String param2) {
-        ClosedFragment fragment = new ClosedFragment();
+    public static DelayedFragment newInstance(String param1, String param2) {
+        DelayedFragment fragment = new DelayedFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

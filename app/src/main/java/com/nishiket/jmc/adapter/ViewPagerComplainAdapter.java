@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.nishiket.jmc.views.ActiveFragment;
-import com.nishiket.jmc.views.ClosedFragment;
+import com.nishiket.jmc.views.DelayedFragment;
 import com.nishiket.jmc.views.SolvedFragment;
 
 public class ViewPagerComplainAdapter extends FragmentPagerAdapter {
@@ -23,7 +23,7 @@ public class ViewPagerComplainAdapter extends FragmentPagerAdapter {
         } else if (position == 1) {
             return (new SolvedFragment());
         }else {
-            return (new ClosedFragment());
+            return (new DelayedFragment());
         }
     }
 
@@ -40,7 +40,7 @@ public class ViewPagerComplainAdapter extends FragmentPagerAdapter {
         } else if (position == 1) {
             return "Solved";
         }else {
-            return "Closed";
+            return "Delayed";
         }
     }
 }
