@@ -49,11 +49,12 @@ public class login extends AppCompatActivity {
                 String pass=login_Pass.getText().toString();
                 if(!email.isEmpty() && !pass.isEmpty()){
                     viewModel.signIn(email,pass);
-                    Toast.makeText(login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+
                     viewModel.getFirebaseUserMutableLiveData().observe(login.this, new Observer<FirebaseUser>() {
                         @Override
                         public void onChanged(FirebaseUser firebaseUser) {
                             if(firebaseUser != null){
+                                Toast.makeText(login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(toHome);
                                 finish();
                             }
