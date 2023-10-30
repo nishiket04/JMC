@@ -1,4 +1,5 @@
  Jamnagar Municipal Corporation Complaint Reporting App
+ URBAN VOICE
 
 ![App Logo](app/src/main/res/mipmap-hdpi/ic_launcher.webp)
 
@@ -38,3 +39,7 @@ To get started with the Jamnagar Municipal Corporation Complaint Reporting App, 
 
    ```bash
    git clone https://github.com/nishiket04/JMC.git
+2. open Android Studio and use get from VCS
+3. commit
+   ```bash
+   git commit -m "msg"
