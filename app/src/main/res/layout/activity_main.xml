@@ -36,55 +36,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Complains"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/kantumruypro_bold"
-        android:textSize="24dp"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_contain"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_marginBottom="?actionBarSize"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt"
-        app:tabIndicator="@drawable/tablayout_design"
-        app:tabIndicatorAnimationMode="elastic"
-        android:background="@drawable/tablayout_background_design"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicatorGravity="stretch"
-        app:tabInlineLabel="true"
-        app:tabIndicatorAnimationDuration="1500"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/primary" />
 
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="2dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="?attr/actionBarSize"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_navigation_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
@@ -101,18 +62,19 @@
         app:menu="@menu/bottom_nav_menu"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="51dp"
+        android:backgroundTint="@color/white"
         android:src="@drawable/add"
+        android:tint="@color/primary"
+        app:borderWidth="2dp"
+        app:fabCustomSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="51dp"
-        app:fabCustomSize="50dp"
-        android:tint="@color/primary"
-        app:shapeAppearance="?attr/floatingActionButtonStyle"
-        app:borderWidth="2dp"
-        android:backgroundTint="@color/white"/>
+        app:shapeAppearance="?attr/floatingActionButtonStyle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

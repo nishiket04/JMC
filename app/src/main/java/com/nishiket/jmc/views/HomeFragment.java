@@ -11,9 +11,16 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.adapter.ViewPagerComplainAdapter;
 
-
-public class ActiveFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link HomeFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class HomeFragment extends Fragment {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +31,7 @@ public class ActiveFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ActiveFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +41,11 @@ public class ActiveFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ActiveFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ActiveFragment newInstance(String param1, String param2) {
-        ActiveFragment fragment = new ActiveFragment();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,7 +65,15 @@ public class ActiveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        viewPager = view.findViewById(R.id.viewPager);
+        tabLayout = view.findViewById(R.id.tabLayout);
+        ViewPagerComplainAdapter viewPagerComplainAdapter = new ViewPagerComplainAdapter(getChildFragmentManager());
+        viewPager.setAdapter(viewPagerComplainAdapter);
+        tabLayout.setupWithViewPager(viewPager);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_active, container, false);
+        return view;
     }
+
+
 }
