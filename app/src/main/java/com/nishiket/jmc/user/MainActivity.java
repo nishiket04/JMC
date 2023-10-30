@@ -29,6 +29,9 @@ import com.nishiket.jmc.R;
 import com.nishiket.jmc.adapter.ViewPagerComplainAdapter;
 import com.nishiket.jmc.views.ActiveFragment;
 import com.nishiket.jmc.views.HomeFragment;
+import com.nishiket.jmc.views.NotificationFragment;
+import com.nishiket.jmc.views.OtherFragment;
+import com.nishiket.jmc.views.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
    private TextView txt;
@@ -48,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 if(id== R.id.nav_home){
                     loadFrag(new HomeFragment(),true);
                 } else if (id == R.id.nav_other) {
-//                    loadFrag(new Fragment(),true);
+                    loadFrag(new OtherFragment(),false);
                 } else if (id == R.id.nav_notification) {
-
+                    loadFrag(new NotificationFragment(),false);
                 } else if (id == R.id.nav_profile) {
-
+                    loadFrag(new ProfileFragment(),false);
                 }
+
                 return true;
             }
         });
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             ft.remove(fragment);
             ft.replace(R.id.fragment_contain,fragment);
             fm.popBackStack(fragment.getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            ft.addToBackStack(String.valueOf(fragment.getId()));
         }else {
             ft.replace(id.fragment_contain,fragment);
         }
