@@ -42,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
         assignId();
-        loadHome();
+        loadHome(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id= item.getItemId();
                 if(id== R.id.nav_home){
+                    loadHome(false);
                     loadFrag(new HomeFragment(),true);
                 } else if (id == R.id.nav_other) {
                     loadFrag(new OtherFragment(),false);
@@ -69,21 +70,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loadHome() {
+    private void loadHome(boolean flag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(id.fragment_contain,new HomeFragment());
-        ft.commit();
+        if(flag){
+            ft.add(id.fragment_contain,new HomeFragment());
+            ft.commit();
+        }else {
+            ft.remove(new HomeFragment());
+            ft.commit();
+        }
     }
 
     private void loadFrag(Fragment fragment,boolean flag) {
         FragmentManager fm =getSupportFragmentManager();
         FragmentTransaction ft =fm.beginTransaction();
         if(flag == true){
-            ft.remove(fragment);
             ft.replace(R.id.fragment_contain,fragment);
-            fm.popBackStack(fragment.getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            ft.addToBackStack(String.valueOf(fragment.getId()));
+            fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }else {
             ft.replace(id.fragment_contain,fragment);
         }
