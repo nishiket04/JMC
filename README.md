@@ -15,7 +15,7 @@
 
 The Jamnagar Municipal Corporation Complaint Reporting App is a user-friendly, web-based platform that allows residents and stakeholders in the Jamnagar city to report issues, complaints, or concerns related to civic services. The app aims to streamline the complaint submission process and enhance transparency by providing real-time status monitoring of reported issues.
 
-![App Screenshot](Home.png) ![App Screenshot](Notification.png)
+![App Screenshot](Home.png) ![App Screenshot](Notification_u.png) ![App Screenshot](uraban_log.png) ![App Screenshot](uraban_reg.png)
 
 ## Features
 
