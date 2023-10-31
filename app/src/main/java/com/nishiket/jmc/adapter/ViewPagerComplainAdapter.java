@@ -10,11 +10,14 @@ import com.nishiket.jmc.views.ActiveFragment;
 import com.nishiket.jmc.views.DelayedFragment;
 import com.nishiket.jmc.views.SolvedFragment;
 
+// This is ViewPagerAdapter its apply on fragmemt on viewpager and also give Tablyout its name
 public class ViewPagerComplainAdapter extends FragmentPagerAdapter {
+    // First its accept Fragment Manager in its constructor
     public ViewPagerComplainAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
+    // now we get on which position its selected and scrolled and apply its fragment
     @NonNull
     @Override
     public Fragment getItem(int position) {
@@ -30,8 +33,9 @@ public class ViewPagerComplainAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 3;
-    }
+    } // this returns how many tabs are there
 
+    // This will set Its name on Tab with its Positions
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

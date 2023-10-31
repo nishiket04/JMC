@@ -18,25 +18,29 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
+// this class upload and retrive user data in fireStore
 public class UserDataRepository {
-    private Application application;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference refrence= db.collection("userData");
-    private String name,email,mobile,addhar;
+    private Application application; // application context variable
+    private FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
+    private CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
+    private String name,email,mobile,addhar; // keys as in FireStore
 
+    // this is an constructor which accept application context
     public UserDataRepository(Application application){
         this.application=application;
     }
 
+    // this mwthod is used for getting data from its email because in our firestore email is key of any document
     public void getUserData(String email){
-        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        // to collection refrence with documentid as email get that data
+        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() { // if its completed then
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+                if(task.isSuccessful()){ // if task is success
+                    DocumentSnapshot document = task.getResult(); // to the document snapshot get resilt form task
+                    if (document.exists()) { // if there is any value in document then
                         // Document data is in document.getData()
-                        Object data = document.getData();
+                        Object data = document.getData(); // object get the data od document
                         Log.d("FirestoreData", "Document data: " + data);
                     } else {
                         Log.d("FirestoreData", "No such document");
@@ -46,15 +50,18 @@ public class UserDataRepository {
         });
     }
 
-    public void setUserData(String email,String name,String mobile,String addhar){
+    // to upload data of an user when register
+    public void setUserData(String email,String name,String mobile,String addhar){ // getting all the strings
+        // now crated a hashMap and upend all the data in key value pair
         Map<String, Object> data = new HashMap<>();
         data.put("name",name);
         data.put("email",email);
         data.put("mobile",mobile);
         data.put("addhar",addhar);
 
+        // to collection refrence and set document id as email and set the data
         refrence.document(email).set(data)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .addOnSuccessListener(new OnSuccessListener<Void>() { // if its success then
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d("user","success");

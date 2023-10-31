@@ -12,31 +12,37 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+// This is an database connectivity and retrieve class
 public class AuthRepository {
-    private Application application;
-    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
-    private FirebaseAuth firebaseAuth;
-    private boolean flag;
+    private Application application; // application context variable
+    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData; // mutableLive data of an firebaseUser
+    private FirebaseAuth firebaseAuth; // FirebaseAuth variable
+    private boolean flag; // a flag
 
     public boolean getFlag() {
         return flag;
-    }
+    } // this method returns flag
 
+    // constructor that accept aplication context and get instance of an database also create mutable live data
     public AuthRepository(Application application){
         this.application=application;
         firebaseUserMutableLiveData= new MutableLiveData<>();
         firebaseAuth=FirebaseAuth.getInstance();
     }
 
+    // to getMutablelivew data
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
     }
 
+    // to get currentUser
     public FirebaseUser getCurrentUser() {
         return firebaseAuth.getCurrentUser();
     }
 
+    // signup method
     public void signUp(String email, String pass){
+        // signup call firebase method
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -52,6 +58,7 @@ public class AuthRepository {
                 });
     }
 
+    // SignIn method
     public void signIn(String email, String pass){
         firebaseAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -66,6 +73,7 @@ public class AuthRepository {
                 });
     }
 
+    //logOut method
     public void signOut(){
         firebaseAuth.signOut();
     }
