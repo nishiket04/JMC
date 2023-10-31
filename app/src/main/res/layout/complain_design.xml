@@ -211,6 +211,49 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="5">
+            <ImageButton
+                android:id="@+id/reactionHeart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transperent"
+                android:src="@drawable/heart"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/reactionHappy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transperent"
+                android:src="@drawable/happy"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/reactionSad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transperent"
+                android:src="@drawable/sad"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/reactionAngry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transperent"
+                android:src="@drawable/angry"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/reactionThumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transperent"
+                android:src="@drawable/thumb_up"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 
