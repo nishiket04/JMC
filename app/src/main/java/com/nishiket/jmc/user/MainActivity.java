@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_profile) {
                     loadFrag(new ProfileFragment(),false);
                 }
-
                 return true;
             }
         });
@@ -99,5 +98,4 @@ public class MainActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     }
-
 }
