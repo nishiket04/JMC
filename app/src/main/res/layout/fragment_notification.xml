@@ -30,8 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt"
-        tools:itemCount="10"
-        tools:listitem="@layout/complain_design"/>
+        app:layout_constraintTop_toBottomOf="@+id/txt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
