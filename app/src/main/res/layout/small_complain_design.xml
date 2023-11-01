@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardCornerRadius="15dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="2dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="#FFFFFFFF">
+
+    <LinearLayout
+        android:layout_margin="7dp"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="complain no. - "
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:fontFamily="@font/kantumruypro_bold"/>
+            <TextView
+                android:id="@+id/small_complainNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1336"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of complain - "
+                android:textAllCaps="true"
+                android:fontFamily="@font/kantumruypro_bold"/>
+            <TextView
+                android:id="@+id/small_dateOfComplain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22/05/2023"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ward no. - "
+                android:textAllCaps="true"
+                android:fontFamily="@font/kantumruypro_bold"/>
+            <TextView
+                android:id="@+id/small_wardNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Area name - "
+                android:textAllCaps="true"
+                android:fontFamily="@font/kantumruypro_bold"/>
+            <TextView
+                android:id="@+id/small_areaName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vinayak Park"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Branch - "
+                android:textAllCaps="true"
+                android:fontFamily="@font/kantumruypro_bold"/>
+            <TextView
+                android:id="@+id/small_branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Light E-SMART City Area "/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/small_expend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/expand_down"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
