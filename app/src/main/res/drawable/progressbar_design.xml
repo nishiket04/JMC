@@ -3,6 +3,7 @@
     <!-- Background Shape -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
+            <stroke android:color="@color/black" android:width="1dp"/>
             <solid android:color="#FFFFFF" /> <!-- Background color -->
             <corners android:radius="20dp" /> <!-- Adjust radius to round the corners -->
         </shape>
@@ -12,7 +13,7 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">
-                <solid android:color="#009688" /> <!-- Progress color -->
+                <solid android:color="@color/primary" /> <!-- Progress color -->
                 <corners android:radius="20dp" /> <!-- Match the radius of the background for rounded corners -->
             </shape>
         </clip>
