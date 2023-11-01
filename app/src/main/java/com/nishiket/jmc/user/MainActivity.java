@@ -32,6 +32,7 @@ import com.nishiket.jmc.views.HomeFragment;
 import com.nishiket.jmc.views.NotificationFragment;
 import com.nishiket.jmc.views.OtherFragment;
 import com.nishiket.jmc.views.ProfileFragment;
+import com.nishiket.jmc.views.VerificationDoneFragment;
 
 public class MainActivity extends AppCompatActivity {
    private TextView txt;
