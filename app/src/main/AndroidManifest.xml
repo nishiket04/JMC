@@ -21,9 +21,6 @@
             android:name=".user.VerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".user.AddComplainActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
