@@ -160,7 +160,7 @@
             <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Name"
+            android:hint="House No,Street name"
             android:padding="5dp"
             android:id="@+id/addressLine1"
             android:inputType="text"
@@ -201,7 +201,7 @@
             <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Name"
+            android:hint="City"
             android:padding="5dp"
             android:id="@+id/addressLine2"
             android:inputType="text"
@@ -245,10 +245,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Name"
+                android:hint="361***"
                 android:padding="5dp"
                 android:id="@+id/login_Name"
-                android:inputType="text"
+                android:inputType="number"
                 android:background="@drawable/textbox_design"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
