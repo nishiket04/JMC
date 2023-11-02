@@ -11,7 +11,7 @@
         android:layout_width="26dp"
         android:layout_height="27dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="We have sent the verification code to your Phone number"
+        android:text="We have sent the verification code to your Phone number 710*****44"
         android:textAlignment="textStart"
         android:textColor="#7E7E7E"
         android:textSize="18dp"
@@ -61,6 +61,7 @@
             android:background="@drawable/text_box_design2"
             android:focusedByDefault="true"
             android:inputType="number"
+            android:cursorVisible="false"
             android:textAlignment="center" />
 
         <EditText
@@ -70,6 +71,7 @@
             android:layout_weight="1"
             android:background="@drawable/text_box_design2"
             android:inputType="number"
+            android:cursorVisible="false"
             android:textAlignment="center" />
 
         <EditText
@@ -79,6 +81,7 @@
             android:layout_weight="1"
             android:background="@drawable/text_box_design2"
             android:inputType="number"
+            android:cursorVisible="false"
             android:textAlignment="center" />
 
         <EditText
@@ -86,6 +89,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
+            android:cursorVisible="false"
             android:background="@drawable/text_box_design2"
             android:inputType="number"
             android:textAlignment="center" />
