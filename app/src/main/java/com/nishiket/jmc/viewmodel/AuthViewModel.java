@@ -30,7 +30,7 @@ public class AuthViewModel extends AndroidViewModel {
     // when signup is called
     public void signUp(String email,String pass,String name,String addhar,String mobile){
         repository.signUp(email, pass); // in auth call its signUp
-        if(repository.getFlag()) { // if ther account is created then upload the data to firestore
+        if(!repository.getFlag()) { // if ther account is created then upload the data to firestore
             userDataRepository.setUserData(email, name, mobile, addhar);
         }
     }

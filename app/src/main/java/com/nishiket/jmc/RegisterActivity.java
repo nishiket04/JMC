@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.nishiket.jmc.user.MainActivity;
+import com.nishiket.jmc.user.VerificationActivity;
 import com.nishiket.jmc.viewmodel.AuthViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // passing Intent
         Intent toLogin= new Intent(this, login.class);
-        Intent toHome=new Intent(this, MainActivity.class);
+        Intent toHome=new Intent(this, VerificationActivity.class);
         // all Intent Ends
 
         // Setup viewModel

@@ -17,9 +17,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +41,8 @@ import com.nishiket.jmc.views.OtherFragment;
 import com.nishiket.jmc.views.ProfileFragment;
 import com.nishiket.jmc.views.VerificationDoneFragment;
 
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
    private TextView txt;
     private Toolbar toolbar;
@@ -43,7 +51,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
-
+//        PhoneAuthOptions options =
+//                PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+//                        .setPhoneNumber("+917405105330")       // Phone number to verify
+//                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+//                        .setActivity(this)                 // (optional) Activity for callback binding
+//                        // If no activity is passed, reCAPTCHA verification can not be used.
+//                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//                            @Override
+//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onVerificationFailed(@NonNull FirebaseException e) {
+//
+//                            }
+//                        })          // OnVerificationStateChangedCallbacks
+//                        .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
         assignId(); // assigning Id to the all Views
 
         loadHome(true); // This will load Home Fragment and we are passing True to identify that its first time added

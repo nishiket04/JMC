@@ -1,14 +1,22 @@
 package com.nishiket.jmc.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.login;
+import com.nishiket.jmc.viewmodel.AuthViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +70,25 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Intent toH = new Intent(getActivity(), login.class);
+       AuthViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+
+
+        TextView logout;
+        logout = view.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.signOut();
+                startActivity(toH);
+                getActivity().finish();
+            }
+        });
     }
 }
