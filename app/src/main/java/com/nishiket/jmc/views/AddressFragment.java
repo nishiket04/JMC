@@ -1,7 +1,11 @@
 package com.nishiket.jmc.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.user.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +67,24 @@ public class AddressFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_address, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Intent toH= new Intent(getActivity(), MainActivity.class);
+        AppCompatButton address_submit,address_reset;
+        address_submit = view.findViewById(R.id.address_submit);
+        address_reset = view.findViewById(R.id.address_reset);
+
+        address_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(toH);
+                getActivity().finish();
+            }
+        });
+
+
     }
 }

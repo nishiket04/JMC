@@ -5,7 +5,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -72,12 +75,16 @@ public class VerificationDoneFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Intent tom= new Intent(getActivity(),MainActivity.class);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(tom);
-                getActivity().finish();
+                ConstraintLayout constraintLayout = getActivity().findViewById(R.id.parent);
+                FragmentManager fragmentManager = getParentFragmentManager();
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.ver_fragmetn_contain, new ProfilePhotoFragment());
+                transaction.addToBackStack(null);  // If you want to add the transaction to the back stack
+                transaction.commit();
             }
         },3000);
 
