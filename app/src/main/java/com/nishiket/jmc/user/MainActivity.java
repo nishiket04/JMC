@@ -16,10 +16,12 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +37,7 @@ import com.nishiket.jmc.R;
 import com.nishiket.jmc.adapter.ViewPagerComplainAdapter;
 import com.nishiket.jmc.views.ActiveFragment;
 import com.nishiket.jmc.views.AddComplainDoneFragment;
+import com.nishiket.jmc.views.AddComplainFragment;
 import com.nishiket.jmc.views.HomeFragment;
 import com.nishiket.jmc.views.NotificationFragment;
 import com.nishiket.jmc.views.OtherFragment;
@@ -46,6 +49,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
    private TextView txt;
     private Toolbar toolbar;
+    FloatingActionButton floatingActionButton;
     private  BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }); // Bottom navigation Ends
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getSupportFragmentManager(); // getting support of the fragment manager
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.add(id.fragment_contain,new AddComplainFragment());
+                ft.commit();
+            }
+        });
+
 
     } // onCreate Ends
 
@@ -135,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
     private void assignId() {
         toolbar=findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        floatingActionButton = findViewById(id.floatingActionButton);
     } // assignId ends
 
 } // MainActivity Ends

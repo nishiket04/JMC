@@ -203,6 +203,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_design"
         android:text="Submit"
+        android:id="@+id/add_complain_submit"
         android:textColor="@color/white1"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="20dp"
