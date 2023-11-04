@@ -86,7 +86,7 @@ public class ComplainAdapter extends RecyclerView.Adapter<ComplainAdapter.viewHo
             status.setText(complain.getStatus());
             expextedDate.setText((CharSequence) complain.getExpectedDate());
             workDone.setProgress((int) complain.getWorkDone());
-            Glide.with(context).load(complain.getPhoto()).into(photo);
+//            Glide.with(context).load(complain.getPhoto()).into(photo);
         }
     }
 }

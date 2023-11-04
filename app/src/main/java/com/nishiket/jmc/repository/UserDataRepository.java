@@ -24,30 +24,31 @@ public class UserDataRepository {
     private FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
     private CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
     private String name,email,mobile,addhar; // keys as in FireStore
-
+    private Map<String,Object> map;
     // this is an constructor which accept application context
     public UserDataRepository(Application application){
         this.application=application;
+        map = new HashMap<>();
     }
 
     // this mwthod is used for getting data from its email because in our firestore email is key of any document
-    public void getUserData(String email){
+    public Map getUserData(String email){
         // to collection refrence with documentid as email get that data
-        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() { // if its completed then
+        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){ // if task is success
-                    DocumentSnapshot document = task.getResult(); // to the document snapshot get resilt form task
-                    if (document.exists()) { // if there is any value in document then
-                        // Document data is in document.getData()
-                        Object data = document.getData(); // object get the data od document
-                        Log.d("FirestoreData", "Document data: " + data);
-                    } else {
-                        Log.d("FirestoreData", "No such document");
-                    }
+                if (task.isSuccessful()){
+                  DocumentSnapshot documentSnapshot= task.getResult();
+                  name=documentSnapshot.getString("name");
+                  mobile = documentSnapshot.getString("mobile");
+                  addhar = documentSnapshot.getString("addhar");
+                    map.put("name",name);
+                    map.put("mobile",mobile);
+                    map.put("addhar",addhar);
                 }
             }
         });
+        return map;
     }
 
     // to upload data of an user when register

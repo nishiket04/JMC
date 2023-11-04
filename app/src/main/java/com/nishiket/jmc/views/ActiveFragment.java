@@ -1,5 +1,6 @@
 package com.nishiket.jmc.views;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.nishiket.jmc.model.ComplainModel;
 import com.nishiket.jmc.viewmodel.AuthViewModel;
 import com.nishiket.jmc.viewmodel.ComplainViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,7 +76,21 @@ public class ActiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_active, container, false);
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView r1;
+        r1=view.findViewById(R.id.active_complain);
+        r1.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(),LinearLayoutManager.HORIZONTAL,false));
+        List<ComplainModel> list = new ArrayList<>();
+        ComplainModel complainModel = new ComplainModel("1236","22/11/2023","3","Vijay Nagar","Water","Water is not....","bcjhsdbcjhsdvbc","Active","30/11/2023",20);
+        list.add(complainModel);
+        ComplainAdapter adapter = new ComplainAdapter(getActivity().getApplicationContext());
+        r1.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
     }
 }

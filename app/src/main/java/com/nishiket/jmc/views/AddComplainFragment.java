@@ -26,8 +26,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -35,13 +39,12 @@ import com.nishiket.jmc.R;
 import com.nishiket.jmc.user.MainActivity;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddComplainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddComplainFragment extends Fragment {
+    String branchName,SubjectTitle,categoryName,details;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -112,6 +115,38 @@ public class AddComplainFragment extends Fragment {
         ArrayAdapter<String> ad1 = new ArrayAdapter<>(requireContext(),android.R.layout.simple_spinner_item, data);
         ad1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         branchNo.setAdapter(ad1);
+
+        branchNo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                branchName = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                SubjectTitle = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        subject = view.findViewById(R.id.subject);
+
+
+        complain_add_details = view.findViewById(R.id.complain_add_detail);
+
+
+
+
+
         BselectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +156,25 @@ public class AddComplainFragment extends Fragment {
         add_comaplain_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CollectionReference refrence= db.collection(branchName);
+                Map<String, Object> data1 = new HashMap<>();
+                categoryName = subject.getText().toString();
+                details = complain_add_details.getText().toString();
+                data1.put("branch",branchName);
+                data1.put("subject",SubjectTitle);
+                data1.put("prio",categoryName);
+                data1.put("details",details);
+                refrence.document("nishiket04@gmail.com").collection("complain").document().set(data1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Log.d("ok", "onComplete: "+"okkkk");
+                        }
+                    }
+                });
+
                 ConstraintLayout constraintLayout = getActivity().findViewById(R.id.parent);
                 FragmentManager fragmentManager = getParentFragmentManager();
 

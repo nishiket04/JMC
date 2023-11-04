@@ -18,9 +18,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.nishiket.jmc.R;
 import com.nishiket.jmc.login;
 import com.nishiket.jmc.viewmodel.AuthViewModel;
+import com.nishiket.jmc.viewmodel.UserDataViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +34,7 @@ import com.nishiket.jmc.viewmodel.AuthViewModel;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+    String name,mobile,addhar,email;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,8 +90,25 @@ public class ProfileFragment extends Fragment {
         LinearLayout l1 = view.findViewById(R.id.l1);
         LinearLayout l2 = view.findViewById(R.id.l2);
         LinearLayout l3 = view.findViewById(R.id.l3);
+        TextView profile_user_name;
+        FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
+        CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
+
+        email = "nishi04@gmail.com";
+        profile_user_name = view.findViewById(R.id.profile_user_name);
+
        AuthViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+       refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+           @Override
+           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+               if (task.isSuccessful()){
+                   DocumentSnapshot documentSnapshot= task.getResult();
+                   name = documentSnapshot.getString("name");
+                   profile_user_name.setText(name);
+               }
+           }
+       });
        l1.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {

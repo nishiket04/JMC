@@ -9,6 +9,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/active_complain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/small_complain_design"/>
+        android:layout_height="match_parent" />
 </ScrollView>

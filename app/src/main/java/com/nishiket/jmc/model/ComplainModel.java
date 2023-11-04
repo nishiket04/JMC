@@ -18,9 +18,9 @@ public class ComplainModel {
     private String status;
     private String expectedDate;
     private long workDone;
-    private String photo;
+//    private String photo;
 
-    public ComplainModel(String complainNo, String dateOfComplain, String wardNo, String areaName, String branch, String subject, String details, String status, String expectedDate, long workDone, String photo) {
+    public ComplainModel(String complainNo, String dateOfComplain, String wardNo, String areaName, String branch, String subject, String details, String status, String expectedDate, long workDone) {
         this.complainNo = complainNo;
         this.dateOfComplain = dateOfComplain;
         this.wardNo = wardNo;
@@ -31,7 +31,6 @@ public class ComplainModel {
         this.status = status;
         this.expectedDate = expectedDate;
         this.workDone = workDone;
-        this.photo = photo;
     }
 
 
@@ -115,11 +114,4 @@ public class ComplainModel {
         this.workDone = workDone;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 }
