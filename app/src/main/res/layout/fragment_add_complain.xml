@@ -95,11 +95,12 @@
                 android:background="@color/primary"
                 />
 
-            <Spinner
+            <EditText
                 android:id="@+id/subject"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
+                android:background="@drawable/textbox_design"
                 android:spinnerMode="dialog"
                 />
         </LinearLayout>
@@ -129,24 +130,24 @@
                 android:textSize="20dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:paddingRight="24dp"
-                android:paddingLeft="24dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Details"
+                android:text="Category"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@color/primary"
                 />
 
-            <EditText
+            <Spinner
+                android:id="@+id/prio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="City"
+
                 android:padding="5dp"
-                android:id="@+id/complain_add_detail"
-                android:inputType="text"
-                android:background="@drawable/textbox_design"/>
+                android:spinnerMode="dialog"
+                />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -174,6 +175,50 @@
                 android:textSize="20dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
+                android:paddingRight="24dp"
+                android:paddingLeft="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="@color/primary"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:id="@+id/complain_add_detail"
+                android:inputType="text"
+                android:background="@drawable/textbox_design"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:elevation="0dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:paddingRight="28dp"
                 android:paddingLeft="28dp"
                 android:layout_width="wrap_content"
@@ -189,6 +234,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="1dp"
                 android:padding="3dp"
+                android:id="@+id/BselectImage"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
                 android:layout_marginLeft="60dp"
@@ -209,7 +255,7 @@
         android:textSize="20dp"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintTop_toBottomOf="@+id/cardView6"
         android:layout_marginTop="28dp"/>
 
 

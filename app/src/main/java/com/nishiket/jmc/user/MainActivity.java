@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -51,29 +52,12 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     FloatingActionButton floatingActionButton;
     private  BottomNavigationView bottomNavigationView;
+    private LottieAnimationView lottieAnimationView1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
-//        PhoneAuthOptions options =
-//                PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-//                        .setPhoneNumber("+917405105330")       // Phone number to verify
-//                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-//                        .setActivity(this)                 // (optional) Activity for callback binding
-//                        // If no activity is passed, reCAPTCHA verification can not be used.
-//                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//                            @Override
-//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onVerificationFailed(@NonNull FirebaseException e) {
-//
-//                            }
-//                        })          // OnVerificationStateChangedCallbacks
-//                        .build();
-//        PhoneAuthProvider.verifyPhoneNumber(options);
+
         assignId(); // assigning Id to the all Views
 
         loadHome(true); // This will load Home Fragment and we are passing True to identify that its first time added
@@ -108,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getSupportFragmentManager(); // getting support of the fragment manager
                 FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.add(id.fragment_contain,new AddComplainFragment());
+                ft.replace(id.fragment_contain,new AddComplainFragment());
                 ft.commit();
             }
         });

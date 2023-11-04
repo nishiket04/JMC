@@ -1,5 +1,9 @@
 package com.nishiket.jmc.views;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +15,26 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.user.MainActivity;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +47,7 @@ public class AddComplainFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,7 +95,29 @@ public class AddComplainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         AppCompatButton add_comaplain_submit;
+        Spinner branchNo,category;
+        EditText subject,complain_add_details;
+        AppCompatButton BselectImage;
+        int SELECT_PICTURE=200;
+        BselectImage = view.findViewById(R.id.BselectImage);
         add_comaplain_submit = view.findViewById(R.id.add_complain_submit);
+        category = view.findViewById(R.id.prio);
+        String[] courses = {"Select Item","Normal","Advanced"};
+        ArrayAdapter<String> ad = new ArrayAdapter<>(requireContext(),android.R.layout.simple_spinner_item, courses);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setAdapter(ad);
+
+        branchNo = view.findViewById(R.id.branchNo);
+        String[] data = { "Select Item","Water Works", "Slum","Light eSMART CITY AREA","civil","Health","Solid Waste Branch","Estate","Town Planning","UGD","House Tax","UCD","ICDS","Garden","Project-Planning","Light EESL NAGAR SIM AREA","Security","FLOOD CONTROL"};
+        ArrayAdapter<String> ad1 = new ArrayAdapter<>(requireContext(),android.R.layout.simple_spinner_item, data);
+        ad1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        branchNo.setAdapter(ad1);
+        BselectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGallery();
+            }
+        });
         add_comaplain_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +130,54 @@ public class AddComplainFragment extends Fragment {
                 transaction.commit();
             }
         });
+    }
 
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference().child("images"); // Change "images" to your desired folder name
+
+            UploadTask uploadTask = storageRef.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // Handle successful upload, e.g., get the download URL
+                    storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri downloadUri) {
+                            String downloadUrl = downloadUri.toString();
+                            Log.d("imageURL", "onSuccess: "+downloadUrl);
+                            // Now you can use the download URL for the uploaded image
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle the failure
+                }
+            });
+
+            StorageReference imageRef = storageRef.child(selectedImageUri.getLastPathSegment());
+            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    String downloadUri = uri.toString();
+                    Log.d("imagePath", "onSuccess: "+downloadUri);
+                }
+            });
+
+
+        }
     }
 }
