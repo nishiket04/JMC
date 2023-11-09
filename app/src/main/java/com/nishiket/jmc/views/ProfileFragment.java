@@ -9,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nishiket.jmc.R;
 import com.nishiket.jmc.login;
+import com.nishiket.jmc.model.UserData;
 import com.nishiket.jmc.viewmodel.AuthViewModel;
 import com.nishiket.jmc.viewmodel.UserDataViewModel;
 
@@ -86,29 +90,26 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView profile_user_name = view.findViewById(R.id.profile_user_name);
         Intent toH = new Intent(getActivity(), login.class);
         LinearLayout l1 = view.findViewById(R.id.l1);
         LinearLayout l2 = view.findViewById(R.id.l2);
         LinearLayout l3 = view.findViewById(R.id.l3);
-        TextView profile_user_name;
-        FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
-        CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
-
-        email = "nishi04@gmail.com";
-        profile_user_name = view.findViewById(R.id.profile_user_name);
 
        AuthViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
-       refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-           @Override
-           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-               if (task.isSuccessful()){
-                   DocumentSnapshot documentSnapshot= task.getResult();
-                   name = documentSnapshot.getString("name");
-                   profile_user_name.setText(name);
-               }
-           }
-       });
+        UserDataViewModel userDataViewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDataViewModel.class);
+
+        userDataViewModel.getUserDataMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserData>() {
+            @Override
+            public void onChanged(UserData userData) {
+//                Toast.makeText(getContext(), userData.getName(), Toast.LENGTH_SHORT).show();
+                profile_user_name.setText(userData.getName());
+            }
+        });
+        userDataViewModel.getUserData("nishi04@gmail.com");
+
        l1.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.nishiket.jmc.model.UserData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,15 +26,17 @@ public class UserDataRepository {
     private FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
     private CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
     private String name,email,mobile,addhar; // keys as in FireStore
+    private UserData userData;
     private Map<String,Object> map;
     // this is an constructor which accept application context
     public UserDataRepository(Application application){
         this.application=application;
         map = new HashMap<>();
+        userData = new UserData();
     }
 
-    // this mwthod is used for getting data from its email because in our firestore email is key of any document
-    public Map getUserData(String email){
+    // this method is used for getting data from its email because in our firestore email is key of any document
+    public void getUserData(String email,OnDataRetrievedListener listener){
         // to collection refrence with documentid as email get that data
         refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -42,13 +46,14 @@ public class UserDataRepository {
                   name=documentSnapshot.getString("name");
                   mobile = documentSnapshot.getString("mobile");
                   addhar = documentSnapshot.getString("addhar");
-                    map.put("name",name);
-                    map.put("mobile",mobile);
-                    map.put("addhar",addhar);
+                  userData.setName(name);
+                  userData.setEmail(email);
+                  userData.setMobile(mobile);
+                  userData.setAddhar(addhar);
+                  listener.onDataRetrieved(userData);
                 }
             }
         });
-        return map;
     }
 
     // to upload data of an user when register
@@ -73,6 +78,10 @@ public class UserDataRepository {
                         Toast.makeText(application, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public interface OnDataRetrievedListener {
+        void onDataRetrieved(UserData userData);
     }
 
 }

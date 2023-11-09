@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.model.UserData;
+import com.nishiket.jmc.viewmodel.UserDataViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,31 +82,24 @@ public class PersonalInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
-        CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
         TextView uname,mobileno,addharno,emailid;
         uname = view.findViewById(R.id.name);
         mobileno = view.findViewById(R.id.mobileno);
         addharno = view.findViewById(R.id.addharno);
         emailid = view.findViewById(R.id.email);
         email="nishi04@gmail.com";
-        refrence.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    name = documentSnapshot.getString("name");
-                    mobile = documentSnapshot.getString("mobile");
-                    addhar = documentSnapshot.getString("addhar");
-                    uname.setText(name);
-                    mobileno.setText(mobile);
-                    emailid.setText(email);
-                    addharno.setText(addhar);
+        UserDataViewModel userDataViewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDataViewModel.class);
+        userDataViewModel.getUserData(email);
 
-                }
+        userDataViewModel.getUserDataMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserData>() {
+            @Override
+            public void onChanged(UserData userData) {
+                uname.setText(userData.getName());
+                mobileno.setText(userData.getMobile());
+                addharno.setText(userData.getAddhar());
+                emailid.setText(userData.getEmail());
             }
         });
-
     }
 }

@@ -101,10 +101,11 @@ public class AddComplainFragment extends Fragment {
         Spinner branchNo,category;
         EditText subject,complain_add_details;
         AppCompatButton BselectImage;
-        int SELECT_PICTURE=200;
+
         BselectImage = view.findViewById(R.id.BselectImage);
         add_comaplain_submit = view.findViewById(R.id.add_complain_submit);
         category = view.findViewById(R.id.prio);
+
         String[] courses = {"Select Item","Normal","Advanced"};
         ArrayAdapter<String> ad = new ArrayAdapter<>(requireContext(),android.R.layout.simple_spinner_item, courses);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -156,25 +157,6 @@ public class AddComplainFragment extends Fragment {
         add_comaplain_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CollectionReference refrence= db.collection(branchName);
-                Map<String, Object> data1 = new HashMap<>();
-                categoryName = subject.getText().toString();
-                details = complain_add_details.getText().toString();
-                data1.put("branch",branchName);
-                data1.put("subject",SubjectTitle);
-                data1.put("prio",categoryName);
-                data1.put("details",details);
-                refrence.document("nishiket04@gmail.com").collection("complain").document().set(data1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Log.d("ok", "onComplete: "+"okkkk");
-                        }
-                    }
-                });
-
                 ConstraintLayout constraintLayout = getActivity().findViewById(R.id.parent);
                 FragmentManager fragmentManager = getParentFragmentManager();
 

@@ -4,27 +4,32 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
+import com.nishiket.jmc.model.UserData;
 import com.nishiket.jmc.repository.UserDataRepository;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserDataViewModel extends AndroidViewModel {
-    private String name,mobile,addhar;
-   private Map<String,Object> map;
+    private MutableLiveData<UserData> userDataMutableLiveData;
+
+    public MutableLiveData<UserData> getUserDataMutableLiveData() {
+        return userDataMutableLiveData;
+    }
 
     private UserDataRepository userDataRepository;
     public UserDataViewModel(@NonNull Application application) {
         super(application);
         userDataRepository = new UserDataRepository(application);
-        map = new HashMap<>();
+        userDataMutableLiveData = new MutableLiveData<>();
     }
 
     public void getUserData(String email){
-     map = userDataRepository.getUserData(email);
-     name= (String) map.get("name");
-     mobile = (String) map.get("mobile");
-     addhar = (String) map.get("addhar");
+        userDataRepository.getUserData(email, new UserDataRepository.OnDataRetrievedListener() {
+            @Override
+            public void onDataRetrieved(UserData userData) {
+                userDataMutableLiveData.postValue(userData);
+            }
+        });
     }
 }

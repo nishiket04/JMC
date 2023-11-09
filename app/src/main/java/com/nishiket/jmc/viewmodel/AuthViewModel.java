@@ -37,7 +37,7 @@ public class AuthViewModel extends AndroidViewModel {
     // call the signIn of an Auth class
     public void signIn(String email, String pass){
         repository.signIn(email, pass);
-        userDataRepository.getUserData("nishi04@gmail.com");
+//        userDataRepository.getUserData("nishi04@gmail.com");
     }
 
     // call the SignOut of an Auth class
