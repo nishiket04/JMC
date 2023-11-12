@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,19 +18,7 @@
             android:layout_height="34dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/expand_left"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/complete_txt"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/complete_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Back"
-            android:textColor="@color/primary"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/complete_img"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -66,8 +55,8 @@
                     android:textSize="20dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="34dp"
-                    android:paddingRight="34dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
@@ -112,8 +101,8 @@
                     android:textSize="20dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="32dp"
-                    android:paddingRight="32dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="E-mail"
@@ -162,7 +151,7 @@
                     android:paddingRight="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mobile No."
+                    android:text="Mobile"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:background="@color/primary"
@@ -204,11 +193,11 @@
                     android:textSize="20dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="13dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Addhar No."
+                    android:text="Addhar"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:background="@color/primary"
@@ -271,6 +260,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/ward_no"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -316,6 +306,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/area_Name"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -357,6 +348,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/address_line1"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -398,6 +390,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/address_line2"
                     android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -442,6 +435,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/pincode"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

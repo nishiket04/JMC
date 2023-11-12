@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.nishiket.jmc.model.UserData;
 import com.nishiket.jmc.user.MainActivity;
 import com.nishiket.jmc.viewmodel.AuthViewModel;
 
@@ -22,6 +23,7 @@ public class login extends AppCompatActivity {
    private EditText login_Name,login_Pass,login_Mail;
    private AppCompatButton login_Btn;
    private AuthViewModel viewModel;
+   private UserData userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         assignId(); // assigning Id to the all Views
+        userData = new UserData();
 
         // passing Intent
         Intent toReg=new Intent(this, RegisterActivity.class);
@@ -57,6 +60,8 @@ public class login extends AppCompatActivity {
 
                 if(!email.isEmpty() && !pass.isEmpty()){ // if email and password is not empty then it will call viewModel signIn Method
                     viewModel.signIn(email,pass); // signIn method of viewModel
+                    userData.setEmail(email);
+
 
                     // now checking in viewModel MutableLiveData is changed or not
                     viewModel.getFirebaseUserMutableLiveData().observe(login.this, new Observer<FirebaseUser>() {

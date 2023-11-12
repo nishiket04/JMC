@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -12,6 +14,8 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -82,12 +86,21 @@ public class PersonalInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView uname,mobileno,addharno,emailid;
+        TextView uname,mobileno,addharno,emailid,address_line1,address_line2,pincode;
+        ImageView complate_img;
+        ScrollView scrollView;
+        complate_img = view.findViewById(R.id.complete_img);
         uname = view.findViewById(R.id.name);
         mobileno = view.findViewById(R.id.mobileno);
         addharno = view.findViewById(R.id.addharno);
         emailid = view.findViewById(R.id.email);
-        email="nishi04@gmail.com";
+        address_line1 = view.findViewById(R.id.address_line1);
+        address_line2 = view.findViewById(R.id.address_line2);
+        pincode = view.findViewById(R.id.pincode);
+        scrollView = view.findViewById(R.id.root);
+        scrollView.setVisibility(View.GONE);
+        view.getRootView().findViewById(R.id.load).setVisibility(View.VISIBLE);
+        email = "nishiket04@gmail.com";
         UserDataViewModel userDataViewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDataViewModel.class);
         userDataViewModel.getUserData(email);
@@ -95,11 +108,29 @@ public class PersonalInfoFragment extends Fragment {
         userDataViewModel.getUserDataMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserData>() {
             @Override
             public void onChanged(UserData userData) {
+                scrollView.setVisibility(View.VISIBLE);
+                view.getRootView().findViewById(R.id.load).setVisibility(View.GONE);
                 uname.setText(userData.getName());
                 mobileno.setText(userData.getMobile());
                 addharno.setText(userData.getAddhar());
                 emailid.setText(userData.getEmail());
+                address_line1.setText(userData.getAddressLine1());
+                address_line2.setText(userData.getAddressLine2());
+                pincode.setText(userData.getPincode());
             }
         });
+
+    complate_img.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentManager fm = getParentFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_contain,new ProfileFragment());
+            ft.commit();
+        }
+    });
+
+
     }
+
 }

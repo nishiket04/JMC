@@ -1,7 +1,38 @@
 package com.nishiket.jmc.model;
 
 public class UserData {
-    String name,email,mobile,addhar;
+    String name;
+    String email;
+    String mobile;
+    String addhar;
+    String addressLine1;
+    String addressLine2;
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    String pincode;
 
     public String getAddhar() {
         return addhar;

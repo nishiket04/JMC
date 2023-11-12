@@ -25,7 +25,7 @@ public class UserDataRepository {
     private Application application; // application context variable
     private FirebaseFirestore db = FirebaseFirestore.getInstance(); // firebase firestore instance
     private CollectionReference refrence= db.collection("userData"); // now collection refrence here our collection refrence is userData
-    private String name,email,mobile,addhar; // keys as in FireStore
+    private String name,email,mobile,addhar,addressLine1,addressLine2,pincode; // keys as in FireStore
     private UserData userData;
     private Map<String,Object> map;
     // this is an constructor which accept application context
@@ -46,10 +46,17 @@ public class UserDataRepository {
                   name=documentSnapshot.getString("name");
                   mobile = documentSnapshot.getString("mobile");
                   addhar = documentSnapshot.getString("addhar");
+                  addressLine1 = documentSnapshot.getString("addressLine1");
+                  addressLine2 = documentSnapshot.getString("addressLine2");
+                  pincode = documentSnapshot.getString("pincode");
+
                   userData.setName(name);
-                  userData.setEmail(email);
                   userData.setMobile(mobile);
                   userData.setAddhar(addhar);
+                  userData.setEmail(email);
+                  userData.setAddressLine1(addressLine1);
+                  userData.setAddressLine2(addressLine2);
+                  userData.setPincode(pincode);
                   listener.onDataRetrieved(userData);
                 }
             }

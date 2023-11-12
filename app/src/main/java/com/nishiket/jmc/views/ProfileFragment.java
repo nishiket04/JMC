@@ -95,6 +95,10 @@ public class ProfileFragment extends Fragment {
         LinearLayout l1 = view.findViewById(R.id.l1);
         LinearLayout l2 = view.findViewById(R.id.l2);
         LinearLayout l3 = view.findViewById(R.id.l3);
+        ConstraintLayout root = view.findViewById(R.id.root1);
+
+        root.setVisibility(View.GONE);
+        view.getRootView().findViewById(R.id.load).setVisibility(View.VISIBLE);
 
        AuthViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
@@ -104,11 +108,13 @@ public class ProfileFragment extends Fragment {
         userDataViewModel.getUserDataMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserData>() {
             @Override
             public void onChanged(UserData userData) {
+                view.getRootView().findViewById(R.id.load).setVisibility(View.GONE);
+                root.setVisibility(View.VISIBLE);
 //                Toast.makeText(getContext(), userData.getName(), Toast.LENGTH_SHORT).show();
                 profile_user_name.setText(userData.getName());
             }
         });
-        userDataViewModel.getUserData("nishi04@gmail.com");
+        userDataViewModel.getUserData("nishiket04@gmail.com");
 
        l1.setOnClickListener(new View.OnClickListener() {
            @Override

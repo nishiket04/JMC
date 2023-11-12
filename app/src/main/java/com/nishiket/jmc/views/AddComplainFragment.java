@@ -139,12 +139,6 @@ public class AddComplainFragment extends Fragment {
 
             }
         });
-        subject = view.findViewById(R.id.subject);
-
-
-        complain_add_details = view.findViewById(R.id.complain_add_detail);
-
-
 
 
 
