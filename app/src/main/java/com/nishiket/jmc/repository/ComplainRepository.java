@@ -1,6 +1,7 @@
 package com.nishiket.jmc.repository;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,28 +25,78 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplainRepository {
+    private firebaseComplte firebaseComplte;
     private Application application;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference = (CollectionReference) db.collectionGroup("complain");
-    Query query = collectionReference.whereEqualTo("status", "Active");
-    public ComplainRepository(Application application) {
-        this.application = application;
+    Query query = db.collectionGroup("complain").whereEqualTo("status","Active");
+    Query querySolved = db.collectionGroup("complain").whereEqualTo("status","Solved");
+    Query queryDeleyed = db.collectionGroup("complain").whereEqualTo("status","Deleyed");
+    public ComplainRepository(firebaseComplte firebaseComplte) {
+        this.firebaseComplte = firebaseComplte;
+//        this.application = application;
     }
 
-    public LiveData<List<ComplainModel>> getActiveComplain(){
-        MutableLiveData<List<ComplainModel>> complainLiveData = new MutableLiveData<>();
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<ComplainModel> complainList = new ArrayList<>();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    ComplainModel complain = document.toObject(ComplainModel.class);
-                    complainList.add(complain);
+    public void getActiveComplain(){
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    QuerySnapshot result = task.getResult();
+                    if (result!=null) {
+                        List<ComplainModel> complainModelList = task.getResult().toObjects(ComplainModel.class);
+                        if (firebaseComplte != null) {
+                            firebaseComplte.onComplete(complainModelList);
+                        }
+                        Log.d("data", "getActiveComplain: " + task.getResult().getMetadata());
+                    }
+                }else {
+                    Log.e("data", "Error getting active complains", task.getException());
                 }
-                complainLiveData.setValue(complainList);
-            } else {
-                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        return complainLiveData;
+    }
+
+    public void getSolvedComplain(){
+        querySolved.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    QuerySnapshot result = task.getResult();
+                    if (result!=null) {
+                        List<ComplainModel> complainModelList = task.getResult().toObjects(ComplainModel.class);
+                        if (firebaseComplte != null) {
+                            firebaseComplte.onComplete(complainModelList);
+                        }
+                        Log.d("data", "getActiveComplain: " + task.getResult().getMetadata());
+                    }
+                }else {
+                    Log.e("data", "Error getting active complains", task.getException());
+                }
+            }
+        });
+    }
+
+    public void getDeleyedComplain(){
+        queryDeleyed.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    QuerySnapshot result = task.getResult();
+                    if (result!=null) {
+                        List<ComplainModel> complainModelList = task.getResult().toObjects(ComplainModel.class);
+                        if (firebaseComplte != null) {
+                            firebaseComplte.onComplete(complainModelList);
+                        }
+                        Log.d("data", "getActiveComplain: " + task.getResult().getMetadata());
+                    }
+                }else {
+                    Log.e("data", "Error getting active complains", task.getException());
+                }
+            }
+        });
+    }
+
+    public interface firebaseComplte{
+        void onComplete(List<ComplainModel> complainModelList);
     }
 }

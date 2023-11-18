@@ -5,34 +5,47 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.PropertyName;
+
 import java.util.Date;
 
 public class ComplainModel {
+    @DocumentId
+    private String documentId;
+    @PropertyName("complainNo")
     private String complainNo;
+    @PropertyName("dateOfComplain")
     private String dateOfComplain;
+    @PropertyName("wardNo")
     private String wardNo;
+    @PropertyName("areaName")
     private String areaName;
+    @PropertyName("branch")
     private String branch;
+    @PropertyName("subject")
     private String subject;
+    @PropertyName("details")
     private String details;
+    @PropertyName("status")
     private String status;
+    @PropertyName("expextedDate")
     private String expectedDate;
-    private long workDone;
+    @PropertyName("workDone")
+    private String workDone;
 //    private String photo;
 
-    public ComplainModel(String complainNo, String dateOfComplain, String wardNo, String areaName, String branch, String subject, String details, String status, String expectedDate, long workDone) {
-        this.complainNo = complainNo;
-        this.dateOfComplain = dateOfComplain;
-        this.wardNo = wardNo;
-        this.areaName = areaName;
-        this.branch = branch;
-        this.subject = subject;
-        this.details = details;
-        this.status = status;
-        this.expectedDate = expectedDate;
-        this.workDone = workDone;
+    public ComplainModel(){
+
     }
 
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
 
     public String getComplainNo() {
         return complainNo;
@@ -106,12 +119,11 @@ public class ComplainModel {
         this.expectedDate = expectedDate;
     }
 
-    public long getWorkDone() {
+    public String getWorkDone() {
         return workDone;
     }
 
-    public void setWorkDone(int workDone) {
+    public void setWorkDone(String workDone) {
         this.workDone = workDone;
     }
-
 }

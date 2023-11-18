@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplainAdapter extends RecyclerView.Adapter<ComplainAdapter.viewHolder> {
-    private List<ComplainModel> complainList = new ArrayList<>();
+    private List<ComplainModel> complainList;
     Context context;
 
     public ComplainAdapter(Context context) {
@@ -28,33 +30,61 @@ public class ComplainAdapter extends RecyclerView.Adapter<ComplainAdapter.viewHo
     }
     public void setActiveComplainList(List<ComplainModel> complainList){
         this.complainList = complainList;
-        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_active,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.complain_design,parent,false);
         viewHolder viewHolder = new viewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        ComplainModel complain = complainList.get(position);
-        holder.bind(complain,holder);
+        ComplainModel model = complainList.get(position);
+        holder.subject.setText(model.getSubject());
+        holder.expextedDate.setText(model.getExpectedDate());
+        holder.subject.setText(model.getSubject());
+        holder.status.setText(model.getStatus());
+        holder.details.setText(model.getDetails());
+        holder.branch.setText(model.getBranch());
+        holder.areaName.setText(model.getAreaName());
+        holder.dateOfComplain.setText(model.getDateOfComplain());
+        holder.complainNo.setText(model.getComplainNo());
+        holder.workDone.setProgress(Integer.parseInt(model.getWorkDone()));
+        holder.expendDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.expendDown.getVisibility() == View.VISIBLE){
+                    holder.expend.setVisibility(View.VISIBLE);
+                    holder.expendDown.setVisibility(View.GONE);
+                }else {
+                    holder.expend.setVisibility(View.GONE);
+                    holder.expendDown.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return complainList.size();
+        if(complainList == null){
+            return 0;
+        }
+        else {
+            return complainList.size();
+        }
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{
             TextView complainNo,dateOfComplain,wardNo,areaName,branch,subject,details,status,expextedDate;
             ProgressBar workDone;
-            ImageView photo;
+            ImageView photo,expendDown;
             ImageButton reactionHeart,reactionHappy,reactionAngry,reactionThumb;
+            LinearLayout expend;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,20 +103,9 @@ public class ComplainAdapter extends RecyclerView.Adapter<ComplainAdapter.viewHo
             reactionHappy = itemView.findViewById(R.id.reactionHappy);
             reactionAngry = itemView.findViewById(R.id.reactionAngry);
             reactionThumb = itemView.findViewById(R.id.reactionThumb);
-        }
+            expendDown = itemView.findViewById(R.id.expendImg);
+            expend = itemView.findViewById(R.id.expend);
 
-        public void bind(ComplainModel complain, viewHolder viewHolder){
-            complainNo.setText(complain.getComplainNo());
-            dateOfComplain.setText((CharSequence) complain.getDateOfComplain());
-            wardNo.setText(complain.getWardNo());
-            areaName.setText(complain.getAreaName());
-            branch.setText(complain.getBranch());
-            subject.setText(complain.getSubject());
-            details.setText(complain.getDetails());
-            status.setText(complain.getStatus());
-            expextedDate.setText((CharSequence) complain.getExpectedDate());
-            workDone.setProgress((int) complain.getWorkDone());
-//            Glide.with(context).load(complain.getPhoto()).into(photo);
         }
     }
 }

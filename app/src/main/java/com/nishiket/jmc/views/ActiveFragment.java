@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -83,14 +84,26 @@ public class ActiveFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView r1;
+        ComplainViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ComplainViewModel.class);
+
         r1=view.findViewById(R.id.active_complain);
-        r1.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(),LinearLayoutManager.HORIZONTAL,false));
-        List<ComplainModel> list = new ArrayList<>();
-        ComplainModel complainModel = new ComplainModel("1236","22/11/2023","3","Vijay Nagar","Water","Water is not....","bcjhsdbcjhsdvbc","Active","30/11/2023",20);
-        list.add(complainModel);
-        ComplainAdapter adapter = new ComplainAdapter(getActivity().getApplicationContext());
-        r1.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        r1.setVisibility(View.GONE);
+        view.getRootView().findViewById(R.id.load).setVisibility(View.VISIBLE);
+        complainAdapter = new ComplainAdapter(getContext());
+        r1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        r1.setAdapter(complainAdapter);
+        viewModel.getData();
+        viewModel.getActiveComplainListLiveData().observe(getViewLifecycleOwner(), new Observer<List<ComplainModel>>() {
+            @Override
+            public void onChanged(List<ComplainModel> complainModelList) {
+                r1.setVisibility(View.VISIBLE);
+                view.getRootView().findViewById(R.id.load).setVisibility(View.GONE);
+                complainAdapter.setActiveComplainList(complainModelList);
+                complainAdapter.notifyDataSetChanged();
+            }
+        });
+
 
     }
 }

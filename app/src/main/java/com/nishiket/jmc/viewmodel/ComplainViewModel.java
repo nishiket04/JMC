@@ -17,18 +17,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ComplainViewModel extends ViewModel {
-    private ComplainRepository repository;
+public class ComplainViewModel extends ViewModel implements ComplainRepository.firebaseComplte {
+
+    private ComplainRepository repository = new ComplainRepository(this);
     Application application;
-    private LiveData<List<ComplainModel>> activeComplainListLiveData;
+    private MutableLiveData<List<ComplainModel>> activeComplainListLiveData = new MutableLiveData<>();
+
+    public ComplainViewModel(){}
 
     public ComplainViewModel(Application application) {
         this.application = application;
-        repository = new ComplainRepository(application);
-        activeComplainListLiveData = repository.getActiveComplain();
+
     }
-    public LiveData<List<ComplainModel>> getActiveComplainListLiveData(){
+
+    public MutableLiveData<List<ComplainModel>> getActiveComplainListLiveData() {
         return activeComplainListLiveData;
     }
+    public void getData(){
+        repository.getActiveComplain();
+    }
+    public void getSolvedData(){
+        repository.getSolvedComplain();
+    }
+    public void getDeleyedData(){
+        repository.getDeleyedComplain();
+    }
+
+    @Override
+    public void onComplete(List<ComplainModel> complainModelList) {
+        activeComplainListLiveData.setValue(complainModelList);
+    }
+
 
 }

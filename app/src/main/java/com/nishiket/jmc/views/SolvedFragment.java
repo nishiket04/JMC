@@ -2,13 +2,25 @@ package com.nishiket.jmc.views;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.jmc.R;
+import com.nishiket.jmc.adapter.ComplainAdapter;
+import com.nishiket.jmc.model.ComplainModel;
+import com.nishiket.jmc.viewmodel.ComplainViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +28,7 @@ import com.nishiket.jmc.R;
  * create an instance of this fragment.
  */
 public class SolvedFragment extends Fragment {
+    private ComplainAdapter complainAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +75,31 @@ public class SolvedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_solved, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView r2;
+        ComplainViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ComplainViewModel.class);
+
+        r2=view.findViewById(R.id.r2);
+        r2.setVisibility(View.GONE);
+        view.getRootView().findViewById(R.id.load).setVisibility(View.VISIBLE);
+        complainAdapter = new ComplainAdapter(getContext());
+        r2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        r2.setAdapter(complainAdapter);
+        viewModel.getSolvedData();
+        viewModel.getActiveComplainListLiveData().observe(getViewLifecycleOwner(), new Observer<List<ComplainModel>>() {
+            @Override
+            public void onChanged(List<ComplainModel> complainModelList) {
+                r2.setVisibility(View.VISIBLE);
+                view.getRootView().findViewById(R.id.load).setVisibility(View.GONE);
+                complainAdapter.setActiveComplainList(complainModelList);
+                complainAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
